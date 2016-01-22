@@ -34,7 +34,6 @@ Custom property | Description | Default
 
         <div class="clock">
             <span id="h">{{clock.hour}}</span>:<span id="m">{{clock.minute}}</span>:<span id="s">{{clock.second}}</span>
-            <span id="a">{{clock.am}}</span>
         </div>
     </template>
 
@@ -45,7 +44,6 @@ Custom property | Description | Default
         Polymer({
             is: 'my-clock',
 
-
             ready: function () {
                 this.updateClock();
             },
@@ -55,10 +53,6 @@ Custom property | Description | Default
                 var hours = currentTime.getHours();
                 var minutes = currentTime.getMinutes();
                 var seconds = currentTime.getSeconds();
-                var am = 'AM';
-                if (hours > 11) {
-                    am = 'PM';
-                }
                 if (minutes < 10) {
                     minutes = '0' + minutes;
                 }
@@ -68,8 +62,7 @@ Custom property | Description | Default
                 this.clock = {
                     hour: hours,
                     minute: minutes,
-                    second: seconds,
-                    am: am,
+                    second: seconds
                 };
                 asyncHandle = this.async(this.updateClock, 1000);
             },
