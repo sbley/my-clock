@@ -19,8 +19,8 @@ Custom property | Description | Default
 @element my-clock
 @demo demo/index.html
 -->
-<dom-module id="paper-toggle-button">
-    <template strip-whitespace>
+<dom-module id="my-clock">
+    <template>
 
         <style>
             :host {
@@ -51,26 +51,24 @@ Custom property | Description | Default
                 },
             },
 
-            attached: function () {
-                coonsole.log('my-clock attached');
-                setInterval(this._updateTime, 1000);
+            ready: function () {
+                console.log('my-clock ready');
+                setInterval(function () {
+                    var currentTime = new Date()
+                    var hours = currentTime.getHours()
+                    var minutes = currentTime.getMinutes()
+                    if (minutes < 10) {
+                        minutes = "0" + minutes
+                    }
+                    var t_str = hours + ":" + minutes + " ";
+                    if (hours > 11) {
+                        t_str += "PM";
+                    } else {
+                        t_str += "AM";
+                    }
+                    this.time = t_str;
+                }.bind(this), 1000);
             },
-
-            _updateTime: function () {
-                var currentTime = new Date()
-                var hours = currentTime.getHours()
-                var minutes = currentTime.getMinutes()
-                if (minutes < 10) {
-                    minutes = "0" + minutes
-                }
-                var t_str = hours + ":" + minutes + " ";
-                if (hours > 11) {
-                    t_str += "PM";
-                } else {
-                    t_str += "AM";
-                }
-                this.time = t_str;
-            }
         });
     </script>
 </dom-module>
