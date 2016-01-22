@@ -34,6 +34,7 @@ Custom property | Description | Default
 
         <div class="clock">
             <span id="h">{{clock.hour}}</span>:<span id="m">{{clock.minute}}</span>:<span id="s">{{clock.second}}</span>
+            <span id="a">{{clock.am}}</span>
         </div>
     </template>
 
@@ -73,7 +74,7 @@ Custom property | Description | Default
                 asyncHandle = this.async(this.updateClock, 1000);
             },
 
-            stop: function() {
+            stop: function () {
                 this.cancelAsync(asyncHandle);
             }
 
