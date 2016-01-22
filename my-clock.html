@@ -33,42 +33,51 @@ Custom property | Description | Default
         </style>
 
         <div class="clock">
-            <span id="digits">{{time}}</span>
+            <span id="h">{{clock.hour}}</span>:<span id="m">{{clock.minute}}</span>:<span id="s">{{clock.second}}</span>
         </div>
     </template>
 
     <script>
+
+        var asyncHandle;
+
         Polymer({
             is: 'my-clock',
 
-            properties: {
-                /**
-                 * The time to display.
-                 */
-                time: {
-                    type: String,
-                    value: 'none'
-                },
-            },
 
             ready: function () {
-                console.log('my-clock ready');
-                setInterval(function () {
-                    var currentTime = new Date()
-                    var hours = currentTime.getHours()
-                    var minutes = currentTime.getMinutes()
-                    if (minutes < 10) {
-                        minutes = "0" + minutes
-                    }
-                    var t_str = hours + ":" + minutes + " ";
-                    if (hours > 11) {
-                        t_str += "PM";
-                    } else {
-                        t_str += "AM";
-                    }
-                    this.time = t_str;
-                }.bind(this), 1000);
+                this.updateClock();
             },
-        });
+
+            updateClock: function () {
+                var currentTime = new Date();
+                var hours = currentTime.getHours();
+                var minutes = currentTime.getMinutes();
+                var seconds = currentTime.getSeconds();
+                var am = 'AM';
+                if (hours > 11) {
+                    am = 'PM';
+                }
+                if (minutes < 10) {
+                    minutes = '0' + minutes;
+                }
+                if (seconds < 10) {
+                    seconds = '0' + seconds;
+                }
+                this.clock = {
+                    hour: hours,
+                    minute: minutes,
+                    second: seconds,
+                    am: am,
+                };
+                asyncHandle = this.async(this.updateClock, 1000);
+            },
+
+            stop: function() {
+                this.cancelAsync(asyncHandle);
+            }
+
+        })
+        ;
     </script>
 </dom-module>
