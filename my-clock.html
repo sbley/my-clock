@@ -47,11 +47,13 @@ Custom property | Description | Default
                  */
                 time: {
                     type: String,
+                    value: 'none'
                 },
             },
 
-            attached: function() {
-              setInterval(this._updateTime, 1000);
+            attached: function () {
+                coonsole.log('my-clock attached');
+                setInterval(this._updateTime, 1000);
             },
 
             _updateTime: function () {
