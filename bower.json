@@ -1,0 +1,29 @@
+{
+  "name": "my-clock",
+  "version": "1.0.0",
+  "description": "A simple clock",
+  "authors": [
+    "Stefan Bley"
+  ],
+  "keywords": [
+    "web-components",
+    "polymer",
+    "clock",
+    "control"
+  ],
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sbley/my-clock"
+  },
+  "license": "https://github.com/sbley/my-clock/blob/master/LICENSE",
+  "homepage": "https://github.com/sbley/my-clock",
+  "ignore": [],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.1.0"
+  },
+  "devDependencies": {
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0",
+    "web-component-tester": "Polymer/web-component-tester#^3.3.0"
+  }
+}
